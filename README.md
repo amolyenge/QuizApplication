@@ -20,6 +20,9 @@ Maven (Build Tool)
 JJWT (JWT implementation)
 
 
+
+
+
 📂 Project Structure
 
     com.quizApp.amol
@@ -28,6 +31,10 @@ JJWT (JWT implementation)
     ├── Repository         # JPA Repositories
     ├── Service            # Business logic layer
     ├── Config             # Security config, JWT helpers, filters
+
+
+
+    
 
 🧪 Features :->
 
@@ -49,6 +56,10 @@ JJWT (JWT implementation)
 
 ✅ Angular frontend-ready (CORS enabled for http://localhost:4200)
 
+
+
+
+
 🔐 Authentication
 Login via /auth/login returns a JWT token
 
@@ -59,6 +70,9 @@ Authorization: Bearer <your-token>
 Current User Info via /auth/currentUser
 
 
+
+
+
 🛡️ Security & Roles:->
 
 ROLE_NORMAL: default for newly registered users
@@ -66,6 +80,9 @@ ROLE_NORMAL: default for newly registered users
 ROLE_ADMIN: can be manually assigned for admin privileges
 
 Passwords are hashed using BCrypt
+
+
+
 
 
 👨‍💻 Author
