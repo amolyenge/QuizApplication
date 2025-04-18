@@ -1,0 +1,536 @@
+📚 Quiz Application API Documentation
+This document describes the API endpoints for the Quiz Application developed using Spring Boot. Below are the API routes, their methods, request bodies, responses, and expected status codes.
+
+1. Authentication APIs 🔑
+1.1 Login
+URL: /auth/login
+
+Method: POST
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "username": "john_doe",
+  "password": "password123"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "username": "john_doe"
+}
+Status Code: 200 OK
+
+Description: Returns a JWT token and username upon successful login.
+
+1.2 Get Current User
+URL: /auth/currentUser
+
+Method: GET
+
+Headers:
+
+Authorization: Bearer <token>
+
+Response:
+
+json
+Copy
+Edit
+{
+  "username": "john_doe",
+  "role": "NORMAL"
+}
+Status Code: 200 OK
+
+Description: Returns the current logged-in user's information.
+
+2. User APIs 👥
+2.1 Create User (Register)
+URL: /user/
+
+Method: POST
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "username": "john_doe",
+  "password": "password123",
+  "email": "john_doe@example.com"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "id": 1,
+  "username": "john_doe",
+  "role": "NORMAL"
+}
+Status Code: 201 Created
+
+Description: Registers a new user and returns the user information with assigned default role NORMAL.
+
+2.2 Get User by Username
+URL: /user/{username}
+
+Method: GET
+
+Path Variable: username (string)
+
+Response:
+
+json
+Copy
+Edit
+{
+  "id": 1,
+  "username": "john_doe",
+  "email": "john_doe@example.com",
+  "role": "NORMAL"
+}
+Status Code: 200 OK
+
+Description: Returns the user details for a given username.
+
+2.3 Get All Users
+URL: /user/
+
+Method: GET
+
+Response:
+
+json
+Copy
+Edit
+[
+  {
+    "id": 1,
+    "username": "john_doe",
+    "role": "NORMAL"
+  },
+  {
+    "id": 2,
+    "username": "jane_doe",
+    "role": "ADMIN"
+  }
+]
+Status Code: 200 OK
+
+Description: Returns a list of all registered users.
+
+2.4 Delete User
+URL: /user/{id}
+
+Method: DELETE
+
+Path Variable: id (long)
+
+Response: (Empty)
+
+Status Code: 200 OK
+
+Description: Deletes the user with the specified ID.
+
+2.5 Update User
+URL: /user/{id}
+
+Method: PUT
+
+Path Variable: id (long)
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "username": "john_updated",
+  "password": "new_password123",
+  "email": "john_updated@example.com"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "id": 1,
+  "username": "john_updated",
+  "role": "NORMAL"
+}
+Status Code: 200 OK
+
+Description: Updates user information for the given ID.
+
+3. Category APIs 🏷️
+3.1 Add Category
+URL: /category/
+
+Method: POST
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "categoryName": "Science"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "cid": 1,
+  "categoryName": "Science"
+}
+Status Code: 201 Created
+
+Description: Adds a new category to the system.
+
+3.2 Get All Categories
+URL: /category/
+
+Method: GET
+
+Response:
+
+json
+Copy
+Edit
+[
+  {
+    "cid": 1,
+    "categoryName": "Science"
+  },
+  {
+    "cid": 2,
+    "categoryName": "Math"
+  }
+]
+Status Code: 200 OK
+
+Description: Returns a list of all categories.
+
+3.3 Get Category by ID
+URL: /category/{id}
+
+Method: GET
+
+Path Variable: id (long)
+
+Response:
+
+json
+Copy
+Edit
+{
+  "cid": 1,
+  "categoryName": "Science"
+}
+Status Code: 200 OK
+
+Description: Retrieves a category by its ID.
+
+3.4 Update Category
+URL: /category/{id}
+
+Method: PUT
+
+Path Variable: id (long)
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "categoryName": "Physics"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "cid": 1,
+  "categoryName": "Physics"
+}
+Status Code: 200 OK
+
+Description: Updates the category information.
+
+3.5 Delete Category
+URL: /category/{id}
+
+Method: DELETE
+
+Path Variable: id (long)
+
+Response: (Empty)
+
+Status Code: 200 OK
+
+Description: Deletes a category by its ID.
+
+4. Question APIs ❓
+4.1 Add Question
+URL: /question/
+
+Method: POST
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "question": "What is the capital of France?",
+  "answer": "Paris",
+  "quiz": {
+    "qid": 1
+  }
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "qid": 1,
+  "question": "What is the capital of France?",
+  "answer": "Paris"
+}
+Status Code: 201 Created
+
+Description: Adds a new question to a quiz.
+
+4.2 Get All Questions
+URL: /question/
+
+Method: GET
+
+Response:
+
+json
+Copy
+Edit
+[
+  {
+    "qid": 1,
+    "question": "What is the capital of France?",
+    "answer": "Paris"
+  },
+  {
+    "qid": 2,
+    "question": "What is 2+2?",
+    "answer": "4"
+  }
+]
+Status Code: 200 OK
+
+Description: Returns a list of all questions.
+
+4.3 Get Question by ID
+URL: /question/{id}
+
+Method: GET
+
+Path Variable: id (long)
+
+Response:
+
+json
+Copy
+Edit
+{
+  "qid": 1,
+  "question": "What is the capital of France?",
+  "answer": "Paris"
+}
+Status Code: 200 OK
+
+Description: Retrieves a question by its ID.
+
+4.4 Update Question
+URL: /question/{id}
+
+Method: PUT
+
+Path Variable: id (long)
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "question": "What is the capital of Germany?",
+  "answer": "Berlin"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "qid": 1,
+  "question": "What is the capital of Germany?",
+  "answer": "Berlin"
+}
+Status Code: 200 OK
+
+Description: Updates the question.
+
+4.5 Delete Question
+URL: /question/{id}
+
+Method: DELETE
+
+Path Variable: id (long)
+
+Response: (Empty)
+
+Status Code: 200 OK
+
+Description: Deletes the question by its ID.
+
+5. Quiz APIs 📝
+5.1 Create Quiz
+URL: /quiz/
+
+Method: POST
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "quizName": "General Knowledge",
+  "category": {
+    "cid": 1
+  },
+  "numberOfQuestions": "10",
+  "maxMarks": "100"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "qid": 1,
+  "quizName": "General Knowledge",
+  "category": {
+    "cid": 1,
+    "categoryName": "Science"
+  },
+  "numberOfQuestions": "10",
+  "maxMarks": "100"
+}
+Status Code: 201 Created
+
+Description: Creates a new quiz.
+
+5.2 Get All Quizzes
+URL: /quiz/
+
+Method: GET
+
+Response:
+
+json
+Copy
+Edit
+[
+  {
+    "qid": 1,
+    "quizName": "General Knowledge",
+    "maxMarks": "100"
+  },
+  {
+    "qid": 2,
+    "quizName": "Math Quiz",
+    "maxMarks": "50"
+  }
+]
+Status Code: 200 OK
+
+Description: Returns a list of all quizzes.
+
+5.3 Get Quiz by ID
+URL: /quiz/{id}
+
+Method: GET
+
+Path Variable: id (long)
+
+Response:
+
+json
+Copy
+Edit
+{
+  "qid": 1,
+  "quizName": "General Knowledge",
+  "maxMarks": "100"
+}
+Status Code: 200 OK
+
+Description: Retrieves a quiz by its ID.
+
+5.4 Update Quiz
+URL: /quiz/{id}
+
+Method: PUT
+
+Path Variable: id (long)
+
+Request Body:
+
+json
+Copy
+Edit
+{
+  "quizName": "Updated General Knowledge",
+  "maxMarks": "120"
+}
+Response:
+
+json
+Copy
+Edit
+{
+  "qid": 1,
+  "quizName": "Updated General Knowledge",
+  "maxMarks": "120"
+}
+Status Code: 200 OK
+
+Description: Updates the quiz.
+
+5.5 Delete Quiz
+URL: /quiz/{id}
+
+Method: DELETE
+
+Path Variable: id (long)
+
+Response: (Empty)
+
+Status Code: 200 OK
+
+Description: Deletes the quiz by its ID.
