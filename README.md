@@ -22,12 +22,12 @@ JJWT (JWT implementation)
 
 📂 Project Structure
 
-com.quizApp.amol
-├── Controller         # REST controllers
-├── Model              # Entity classes (User, Quiz, Question, etc.)
-├── Repository         # JPA Repositories
-├── Service            # Business logic layer
-├── Config             # Security config, JWT helpers, filters
+    com.quizApp.amol
+    ├── Controller         # REST controllers
+    ├── Model              # Entity classes (User, Quiz, Question, etc.)
+    ├── Repository         # JPA Repositories
+    ├── Service            # Business logic layer
+    ├── Config             # Security config, JWT helpers, filters
 
 🧪 Features :->
 
